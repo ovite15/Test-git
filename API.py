@@ -126,8 +126,8 @@ async def voice_to_text(file: UploadFile = File(...)):
     voice_data = await file.read()
 
     result = pipe(voice_data)
-    result = analysis(result)
+    result = analysis(result['text'])
     return JSONResponse(content={"TEXT": result})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host='0.0.0.0' ,port = 800)
+    uvicorn.run(app, host='0.0.0.0' ,port = 8000)
